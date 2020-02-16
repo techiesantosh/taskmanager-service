@@ -1,8 +1,13 @@
 package com.web.taskmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,76 +19,107 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public  class ApplicationUser implements UserDetails {
+@JsonInclude(Include.NON_NULL)
+public class ApplicationUser implements UserDetails {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "USER_ID")
-  private long userId;
-  @Column(name = "USERNAME")
-  private String username;
-  @Column(name = "PASSWORD")
-  private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_ID")
+    private long userId;
+    @Column(name = "USERNAME")
+    private String username;
+    @Column(name = "PASSWORD")
+    private String password;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "applicationUser")
-  private Set<Task> tasks = new HashSet<Task>(
-      0);
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "applicationUser")
+    private List<Task> tasks = new ArrayList<>(
+            0);
 
-  public long getUserId() {
-    return userId;
-  }
+    public ApplicationUser() {
 
-  public void setUserId(long userId) {
-    this.userId = userId;
-  }
+    }
 
-  public String getUsername() {
-    return username;
-  }
+    public ApplicationUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+    public long getUserId() {
+        return userId;
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @JsonIgnore
+    public String getPassword() {
+        return password;
+    }
+
+    @JsonProperty
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ApplicationUser that = (ApplicationUser) o;
+        return
+                username.equals(that.username);
 
 
-  public Set<Task> getTasks() {
-    return tasks;
-  }
+    }
 
-  public void setTasks(Set<Task> tasks) {
-    this.tasks = tasks;
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
+    }
 }

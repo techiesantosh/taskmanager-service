@@ -5,17 +5,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@SpringBootApplication(scanBasePackages = "com.web.taskmanager")
+/**
+ * Booting point of the Application
+ */
+@SpringBootApplication(scanBasePackages = {"com.web.taskmanager", "com.web.taskmanager.controller"})
 public class TaskmanagerApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(TaskmanagerApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(TaskmanagerApplication.class, args);
+    }
 
-  @Bean
-  public BCryptPasswordEncoder bCryptPasswordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }
 

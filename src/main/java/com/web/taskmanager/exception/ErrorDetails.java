@@ -2,7 +2,7 @@ package com.web.taskmanager.exception;
 
 import java.util.Date;
 
-  public class ErrorDetails {
+public final class ErrorDetails {
 
     private Date timestamp;
 
@@ -10,29 +10,29 @@ import java.util.Date;
 
     private String details;
 
-    public Date getTimestamp() {
-      return timestamp;
-    }
+    public ErrorDetails(String message, String details) {
+        super();
 
-    public String getMessage() {
-      return message;
-    }
-
-    public String getDetails() {
-      return details;
-    }
-
-    public ErrorDetails( String message, String details) {
-      super();
-
-      this.message = message;
-      this.details = details;
+        this.message = message;
+        this.details = details;
     }
 
     public ErrorDetails(Date timestamp, String message, String details) {
-      super();
-      this.timestamp = timestamp;
-      this.message = message;
-      this.details = details;
+        super();
+        this.timestamp = timestamp;
+        this.message = message;
+        this.details = details;
     }
-  }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+}

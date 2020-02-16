@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface TaskRepositoryCustom {
 
-  List<Task> findTaskByTaskNameAndParentTask(String taskName,String parentTask);
+    List<Task> findTaskByTaskNameAndParentTask(String taskName, String parentTask);
 
 }

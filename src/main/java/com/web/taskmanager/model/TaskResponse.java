@@ -8,91 +8,95 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 public class TaskResponse {
 
-  private Long taskId;
+    private Long taskId;
 
-  private String taskName;
+    private String taskName;
 
-  private int priority;
+    private int priority;
 
-  private String parentTask;
+    private String parentTaskName;
 
-  private Long parentTaskId;
+    private Long parentTaskId;
 
-  @JsonFormat(pattern = "MM/dd/yyyy")
-  private String startDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String startDate;
 
-  @JsonFormat(pattern = "MM/dd/yyyy")
-  private String endDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String endDate;
 
-  public String getTaskName() {
-    return taskName;
-  }
+    public TaskResponse() {
 
-  public void setTaskName(String taskName) {
-    this.taskName = taskName;
-  }
+    }
 
-  public int getPriority() {
-    return priority;
-  }
+    public TaskResponse(Long taskId, String taskName, int priority, Long parentTaskId,
+            String parentTask,
+            String startDate, String endDate) {
+        this.taskName = taskName;
+        this.priority = priority;
+        this.parentTaskName = parentTask;
+        this.taskId = taskId;
+        this.parentTaskId = parentTaskId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
-  public void setPriority(int priority) {
-    this.priority = priority;
-  }
+    public String getTaskName() {
+        return taskName;
+    }
 
-  public String getParentTask() {
-    return parentTask;
-  }
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
 
-  public void setParentTask(String parentTask) {
-    this.parentTask = parentTask;
-  }
+    public int getPriority() {
+        return priority;
+    }
 
-  public Long getTaskId() {
-    return taskId;
-  }
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 
-  public void setTaskId(Long taskId) {
-    this.taskId = taskId;
-  }
+    public String getParentTaskName() {
+        return parentTaskName;
+    }
 
-  public Long getParentTaskId() {
-    return parentTaskId;
-  }
+    public void setParentTaskName(String parentTaskName) {
+        this.parentTaskName = parentTaskName;
+    }
 
-  public void setParentTaskId(Long parentTaskId) {
-    this.parentTaskId = parentTaskId;
-  }
+    public Long getTaskId() {
+        return taskId;
+    }
 
-  public String getStartDate() {
-    return startDate;
-  }
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
+    }
 
-  public void setStartDate(String startDate) {
-    this.startDate = startDate;
-  }
+    public Long getParentTaskId() {
+        return parentTaskId;
+    }
 
-  public String getEndDate() {
-    return endDate;
-  }
+    public void setParentTaskId(Long parentTaskId) {
+        this.parentTaskId = parentTaskId;
+    }
 
-  public void setEndDate(String endDate) {
-    this.endDate = endDate;
-  }
+    @JsonFormat(pattern = "yyyy-MM-dd")
 
-  public TaskResponse(){
+    public String getStartDate() {
+        return startDate;
+    }
 
-  }
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
 
-  public TaskResponse(Long taskId, String taskName, int priority, Long parentTaskId,
-      String parentTask,
-      String startDate, String endDate) {
-    this.taskName = taskName;
-    this.priority = priority;
-    this.parentTask = parentTask;
-    this.taskId = taskId;
-    this.parentTaskId = parentTaskId;
-    this.startDate = startDate;
-    this.endDate = endDate;
-  }
+    @JsonFormat(pattern = "yyyy-MM-dd")
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 }

@@ -39,7 +39,7 @@
   </root>
 
   <!-- LOG "com.web.taskmanager*" at TRACE level -->
-  <logger name="com.web.taskmanager" level="trace" additivity="false">
+  <logger name="com.web.taskmanager" level="error" additivity="false">
     <appender-ref ref="RollingFile" />
     <appender-ref ref="Console" />
   </logger>
