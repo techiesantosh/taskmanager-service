@@ -47,7 +47,7 @@ public class UserControllerTest {
     ApplicationUser applicationUser = new ApplicationUser();
     applicationUser.setUsername("root");
     applicationUser.setPassword("pass");
-    this.mockMvc.perform(post("/users/signup")
+    this.mockMvc.perform(post("/user/register")
         .content(asJsonString(applicationUser))
         .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andReturn();

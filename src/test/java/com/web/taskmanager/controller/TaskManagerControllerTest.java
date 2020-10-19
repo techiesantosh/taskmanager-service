@@ -77,7 +77,7 @@ public class TaskManagerControllerTest {
   @Test
   @Order(3)
   public void getTasks() throws Exception {
-    this.mockMvc.perform(get("/taskmanager/gettasks/{username}",
+    this.mockMvc.perform(get("/taskmanager/task/{username}",
         "root")
         .header("Authorization", "Bearer " + JWT)).andDo(print())
         .andExpect(status().isOk());
@@ -95,7 +95,7 @@ public class TaskManagerControllerTest {
     taskRequest.setEndDate("07/30/2019");
 
     mockMvc
-        .perform(put("/taskmanager/updatetask/{taskId}", 1)
+        .perform(put("/taskmanager/task/{taskId}", 1)
             .header("Authorization", "Bearer " + JWT)
             .content(asJsonString(taskRequest))
             .contentType(MediaType.APPLICATION_JSON)).andDo(print())
@@ -134,7 +134,7 @@ public class TaskManagerControllerTest {
     applicationUser.setPassword("pass");
 
     mockMvc.perform(
-        post("/taskmanager/createtask")
+        post("/taskmanager/task")
             .header("Authorization", "Bearer " + JWT)
             .contentType(MediaType.APPLICATION_JSON)
             .content(asJsonString(taskRequest))
@@ -145,7 +145,7 @@ public class TaskManagerControllerTest {
   @Order(4)
   public void deleteTask() throws Exception {
     this.mockMvc
-        .perform(delete("/taskmanager/deletetasks/{taskId}", 1)
+        .perform(delete("/taskmanager/task/{taskId}", 1)
             .header("Authorization", "Bearer " + JWT))
         .andExpect(status().isOk());
   }

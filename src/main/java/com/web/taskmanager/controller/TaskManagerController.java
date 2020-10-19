@@ -34,7 +34,7 @@ public class TaskManagerController {
      * @param taskRequest
      * @return
      */
-    @RequestMapping(value = "/createtask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/task", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public JsonResponse createTask(@RequestBody @Valid TaskRequest taskRequest) {
         TaskResponse taskResponse = taskService.createTask(taskRequest);
@@ -47,7 +47,7 @@ public class TaskManagerController {
      * @throws Exception
      */
 
-    @RequestMapping(value = "/deletetasks/{taskId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/task/{taskId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public JsonResponse deleteTask(@PathVariable("taskId") Long taskId) throws Exception {
         taskService.deleteTask(taskId);
         return new JsonResponse("", "SUCCESS", null);
@@ -58,26 +58,21 @@ public class TaskManagerController {
      * @return
      */
 
-    @RequestMapping(value = "/gettasks/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/task/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public JsonResponse getTasks(@PathVariable("username") String username) {
 
         List<TaskResponse> tasks = taskService.getTaskNames(username);
         return new JsonResponse("", "SUCCESS", tasks);
     }
 
- /* @RequestMapping(value = "/searchtasks", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-  public JsonResponse searchTasks(@RequestBody TaskRequest taskRequest) {
 
-    List<TaskResponse> tasks= taskService.searchTasks(taskRequest);
-    return new JsonResponse("", "SUCCESS", tasks);
-  }*/
 
     /**
      * @param taskRequest
      * @param taskId
      * @return
      */
-    @RequestMapping(value = "/updatetask/{taskId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/task/{taskId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public JsonResponse updateTasks(@RequestBody TaskRequest taskRequest, @PathVariable("taskId") Long taskId) {
 
         TaskResponse tasks = taskService.updateTask(taskRequest, taskId);
