@@ -27,7 +27,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@Disabled
 public class TaskServiceTest {
 
   @Autowired
@@ -107,19 +106,17 @@ public class TaskServiceTest {
 
   }
 
+//  @Test
+//  public void searchTasks() {
+//    TaskRequest taskRequest = new TaskRequest("Meeting", 2, null, LocalDate.now(),
+//        LocalDate.now().plusDays(4));
+//
+//    List<TaskResponse> taskResponses = taskService.searchTasks(taskRequest);
+//
+//    assertThat(taskResponses.get(1).getTaskName()).isEqualTo(taskRequest.getTaskName());
+//  }
+
   @Test
-  @Ignore
-  public void searchTasks() {
-    TaskRequest taskRequest = new TaskRequest("Meeting", 2, null, LocalDate.now(),
-        LocalDate.now().plusDays(4));
-
-    List<TaskResponse> taskResponses = taskService.searchTasks(taskRequest);
-
-    assertThat(taskResponses.get(1).getTaskName()).isEqualTo(taskRequest.getTaskName());
-  }
-
-  @Test
-  @Ignore
   public void updateTask() {
     TaskRequest taskRequest = new TaskRequest("Email", 2, "Select Agenda", LocalDate.now(),
         LocalDate.now().plusDays(4));
@@ -129,7 +126,6 @@ public class TaskServiceTest {
   }
 
   @Test
-  @Ignore
   public void deleteTask() {
     try {
       taskService.deleteTask(1L);

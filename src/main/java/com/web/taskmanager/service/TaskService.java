@@ -94,12 +94,7 @@ public class TaskService {
                 .orElseThrow(() -> new TaskNotFoundException("TaskId " + taskId + " doesn't exists"));
     }
 
-    public List<TaskResponse> searchTasks(TaskRequest taskRequest) {
-        List<Task> taskList = taskRepository
-                .findAll(TaskSpecifications.hasTaskName(taskRequest.getTaskName()));
-        return createTaskReponse(taskList);
 
-    }
 
     /**
      *

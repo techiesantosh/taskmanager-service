@@ -45,7 +45,10 @@ public class TaskConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers("/", "/actuator", "/actuator/*").permitAll()
-                .antMatchers(HttpMethod.GET,"/v2/api-docs","/swagger-resources/**","/swagger-ui.html**"
+                .antMatchers(HttpMethod.GET,"/v2/api-docs",
+                        "/swagger-ui",
+                        "/swagger-ui/**",
+                        "/swagger-resources/**","/swagger-ui.html**"
                         ,"/webjars/**","favicon.ico").permitAll()
                 .antMatchers(HttpMethod.POST, "/login", "/user/register").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "**").permitAll()//allow CORS option calls

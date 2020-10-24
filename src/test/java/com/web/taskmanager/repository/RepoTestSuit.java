@@ -6,7 +6,6 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@Disabled
 @SuiteClasses({ApplicationUserRepositoryTest.class,TaskRepositoryIntegrationTest.class})
 public class RepoTestSuit {
 

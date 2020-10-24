@@ -91,8 +91,8 @@ public class TaskManagerControllerTest {
     taskRequest.setUsername("root");
     taskRequest.setTaskName("Setup-Meeting");
     taskRequest.setPriority(3);
-    taskRequest.setStartDate("07/23/2019");
-    taskRequest.setEndDate("07/30/2019");
+    taskRequest.setStartDate("2020-12-12");
+    taskRequest.setEndDate("2020-12-24");
 
     mockMvc
         .perform(put("/taskmanager/task/{taskId}", 1)
@@ -127,8 +127,8 @@ public class TaskManagerControllerTest {
     taskRequest.setUsername("root");
     taskRequest.setTaskName("Mail");
     taskRequest.setPriority(3);
-    taskRequest.setStartDate("07/23/2019");
-    taskRequest.setEndDate("07/30/2019");
+    taskRequest.setStartDate("2019-12-12");
+    taskRequest.setEndDate("2019-12-25");
     ApplicationUser applicationUser = new ApplicationUser();
     applicationUser.setUsername("root");
     applicationUser.setPassword("pass");
