@@ -1,9 +1,10 @@
 package com.web.taskmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
 
 public class TaskRequest {
 
@@ -35,7 +36,7 @@ public class TaskRequest {
     }
 
     public TaskRequest(String taskName, int priority, String parentTask, LocalDate startDate,
-            LocalDate endDate) {
+                       LocalDate endDate) {
         this.taskName = taskName;
         this.priority = priority;
         this.parentTask = parentTask;

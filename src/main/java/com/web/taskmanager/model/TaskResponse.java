@@ -29,8 +29,8 @@ public class TaskResponse {
     }
 
     public TaskResponse(Long taskId, String taskName, int priority, Long parentTaskId,
-            String parentTask,
-            String startDate, String endDate) {
+                        String parentTask,
+                        String startDate, String endDate) {
         this.taskName = taskName;
         this.priority = priority;
         this.parentTaskName = parentTask;

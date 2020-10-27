@@ -1,21 +1,22 @@
 package com.web.taskmanager.auth;
 
-import static java.util.Collections.emptyList;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import java.io.IOException;
-import java.util.Date;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Date;
+
+import static java.util.Collections.emptyList;
 
 /**
  * To return token and authenticate JWT token
  */
 public class TokenAuthenticationService {
 
-    static final long EXPIRATIONTIME = 864_000_000; // 10 days
+    static final long EXPIRATIONTIME = 9_00_000; // 15 minutes
     static final String SECRET = "ThisIsASecret";
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";

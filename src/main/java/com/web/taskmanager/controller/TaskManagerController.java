@@ -4,19 +4,15 @@ import com.web.taskmanager.model.JsonResponse;
 import com.web.taskmanager.model.TaskRequest;
 import com.web.taskmanager.model.TaskResponse;
 import com.web.taskmanager.service.TaskService;
-import java.util.List;
-import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Controller to manage tasks
@@ -31,50 +27,59 @@ public class TaskManagerController {
     private TaskService taskService;
 
     /**
+     * Creates a new task
+     *
      * @param taskRequest
-     * @return
+     * @return task
      */
     @RequestMapping(value = "/task", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public JsonResponse createTask(@RequestBody @Valid TaskRequest taskRequest) {
+        LOG.info("TaskRequest => ", taskRequest);
         TaskResponse taskResponse = taskService.createTask(taskRequest);
         return new JsonResponse("", "SUCCESS", taskResponse);
     }
 
     /**
+     * Delete an existing task
+     *
      * @param taskId
-     * @return
+     * @return JsonResponse
      * @throws Exception
      */
 
     @RequestMapping(value = "/task/{taskId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public JsonResponse deleteTask(@PathVariable("taskId") Long taskId) throws Exception {
+        LOG.info("TaskId => ", taskId);
         taskService.deleteTask(taskId);
         return new JsonResponse("", "SUCCESS", null);
     }
 
     /**
+     * To list all the task for the user
+     *
      * @param username
-     * @return
+     * @return list of task
      */
 
     @RequestMapping(value = "/task/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public JsonResponse getTasks(@PathVariable("username") String username) {
-
+        LOG.info("username => ", username);
         List<TaskResponse> tasks = taskService.getTaskNames(username);
         return new JsonResponse("", "SUCCESS", tasks);
     }
 
 
-
     /**
+     * To update existing task
+     *
      * @param taskRequest
      * @param taskId
-     * @return
+     * @return updated task
      */
     @RequestMapping(value = "/task/{taskId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public JsonResponse updateTasks(@RequestBody TaskRequest taskRequest, @PathVariable("taskId") Long taskId) {
-
+    public JsonResponse updateTask(@RequestBody TaskRequest taskRequest, @PathVariable("taskId") Long taskId) {
+        LOG.info("TaskRequest => ", taskRequest);
         TaskResponse tasks = taskService.updateTask(taskRequest, taskId);
         return new JsonResponse("", "SUCCESS", tasks);
     }

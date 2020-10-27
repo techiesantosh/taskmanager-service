@@ -6,12 +6,6 @@ import com.web.taskmanager.auth.TokenAuthenticationService;
 import com.web.taskmanager.model.ApplicationUser;
 import com.web.taskmanager.model.JsonResponse;
 import com.web.taskmanager.model.UserDTO;
-import java.io.IOException;
-import java.util.Collections;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +13,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Collections;
 
 /**
  * Filter to authenticate credential's and return JWT token on success
@@ -50,7 +51,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
         ApplicationUser creds = objectMapper
                 .readValue(req.getInputStream(), ApplicationUser.class);
-        System.out.println("Appication user" + creds);
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
@@ -99,7 +99,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
      */
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request,
-            HttpServletResponse response, AuthenticationException failed)
+                                              HttpServletResponse response, AuthenticationException failed)
             throws IOException, ServletException {
 
         JsonResponse jsonResponse = new JsonResponse("403", "ERROR", failed.getMessage());

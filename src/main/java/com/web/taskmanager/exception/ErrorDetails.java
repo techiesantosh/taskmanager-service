@@ -6,9 +6,9 @@ public final class ErrorDetails {
 
     private Date timestamp;
 
-    private String message;
+    private final String message;
 
-    private String details;
+    private final String details;
 
     public ErrorDetails(String message, String details) {
         super();

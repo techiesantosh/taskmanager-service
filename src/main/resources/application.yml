@@ -11,12 +11,3 @@ spring:
       FAIL_ON_EMPTY_BEANS: false
 
 
-management:
-  endpoint:
-    shutdown:
-      enabled: true
-    health:
-      show-details: true
-    web:
-      exposure:
-        include: '*'

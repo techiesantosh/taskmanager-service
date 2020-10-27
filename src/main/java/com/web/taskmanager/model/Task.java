@@ -1,21 +1,12 @@
 package com.web.taskmanager.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "TASK")
@@ -59,7 +50,7 @@ public class Task {
     }
 
     public Task(String taskName, Task parentTask,
-            Set<Task> childTasks, int priority, LocalDate startDate, LocalDate endDate) {
+                Set<Task> childTasks, int priority, LocalDate startDate, LocalDate endDate) {
 
         this.taskName = taskName;
         this.parentTask = parentTask;
