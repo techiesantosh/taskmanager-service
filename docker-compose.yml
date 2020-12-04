@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql-docker-container:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=taskmanager
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+    volumes:
+      - /data/mysql
+  spring-boot-jpa-app:
+    image: taskmanager
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-docker-container
+    ports:
+      - 8080:8080
+    volumes:
+      - /data/taskmanager

@@ -4,15 +4,36 @@ Taskmanager enables user to register themselves  and create task with parent tas
 
 Users can create, modify and get list of task.
 
-Requisites
-1. Java >=8
-2. MySQl version >=5
-3. Maven version >= 3.6
-4. Intellij or Eclipse
+Tested on Google Cloud Vm with Ubuntu
 
-To run the application execute below command at root of the project
-> **mvn spring-boot:run**
+1. Docker [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
+2. Docker-Compose [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
-For Swagger doc
-[http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)
+3. Installation https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+
+
+Commands
+
+> **docker-compose build**
+
+> **docker-compose up**
+
+> **docker-compose stop**
+
+> **docker images ls**
+
+> **docker container ls -a**
+
+> **docker rm container-name**
+
+> **docker rmi image-name1,..**
+
+To check logs
+> **docker logs container-name**
+
+To run mysql client inside mysql container 
+> **docker run -it --network taskmanager-service_default --rm mysql mysql -htaskmanager-service_mysql-docker-container_1 -uroot -p**
+> **SHOW DATABASES;**
+> **show tables;**
 
