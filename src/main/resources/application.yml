@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/taskmanager
+    url: jdbc:mysql://mysql-docker-container:3306/taskmanager
     username: root
     password: password
   jpa:
